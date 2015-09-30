@@ -4,60 +4,62 @@
  * and open the template in the editor.
  */
 package compilerprogram;
-//
-/**
- *
- * @author Mazayan
- */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.*;
+import java.util.*;
 
 public class RunSingle 
 {
     String results;
     
+    
     public String getProcessOutput(String fileName)
     {
+        
         
         try
         {
             String folderName = fileName.substring(0, fileName.length()-16);
             
-            ProcessBuilder Java = new ProcessBuilder("java", "ArrayLoops");
-            Java.directory(new File(folderName));
-            Process runJava = Java.start();
-
-            Java.redirectErrorStream(true);
-
-            StringBuilder processOutput = new StringBuilder();
-        
-
-        BufferedReader processOutputReader = new BufferedReader(new InputStreamReader(runJava.getInputStream()));
-        
-        String readLine;
-
-            while ((readLine = processOutputReader.readLine()) != null)
-            {
-                processOutput.append(readLine + System.lineSeparator());
+                //Choose application to run
+                ProcessBuilder pb = new ProcessBuilder("java","ArrayLoops");
+                
+                //Set Directory
+                pb.directory(new File(folderName));
+                pb.redirectErrorStream(true);
+                
+                //Run processbuilder
+                Process process = pb.start();
+                
+                OutputStream os = process.getOutputStream();
+                InputStream is = process.getInputStream();
+                
+                BufferedReader in = new BufferedReader(new InputStreamReader(is));
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
+                
+                String inputLine;
+                
+                while ((inputLine = in.readLine()) != null) 
+                {
+                    System.out.println(inputLine);
+                    writer.write("5");
+                    writer.newLine();
+                    writer.flush();
+                    results = inputLine;
+                }
+                
+                System.err.println("next one");
             }
-
-            runJava.waitFor();
-            System.out.println(results);
-            results = processOutput.toString().trim();
-        }
+        
         
         catch (IOException e) 
         {
         // TODO Auto-generated catch block
         e.printStackTrace();
         } 
-        catch (InterruptedException e) 
-        {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-        }
 
         return results;
     }

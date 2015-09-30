@@ -5,10 +5,6 @@
  */
 package compilerprogram;
 
-/**
- *
- * @author Mazayan
- */
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -24,8 +20,7 @@ public class Compiler
     public int testCompile(String fileName)
     {
         try 
-        {    
-            //test
+        {       
             ProcessBuilder compiler = new ProcessBuilder("javac",fileName);
             Process runCompiler = compiler.start();
 

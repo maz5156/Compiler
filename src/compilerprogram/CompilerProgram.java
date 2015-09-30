@@ -7,14 +7,16 @@ package compilerprogram;
 
 /**
  *
- * @author Mazayan
+ * @author h_laessig
  */
-public class CompilerProgram {
+public class CompilerProgram 
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         MainFrame main = new MainFrame();
         main.setVisible(true);
     }

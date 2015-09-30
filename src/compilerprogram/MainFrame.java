@@ -7,11 +7,12 @@ package compilerprogram;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+
 /**
  *
- * @author Mazayan
+ * @author h_laessig
  */
-    public class MainFrame extends javax.swing.JFrame 
+public class MainFrame extends javax.swing.JFrame 
 {
     String fileName;
     
@@ -162,6 +163,9 @@ import javax.swing.JFileChooser;
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         RunSingle newRun = new RunSingle();
+        
+        
+        
         String results = newRun.getProcessOutput(fileName);
         displayResults.setText(results);
     }//GEN-LAST:event_runButtonActionPerformed
