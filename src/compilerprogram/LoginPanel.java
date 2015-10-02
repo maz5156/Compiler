@@ -63,7 +63,7 @@ public class LoginPanel extends JPanel implements ActionListener {
     }
     
     public void fileWriter() throws IOException {
-        PrintWriter out = new PrintWriter(new FileWriter ("output.txt", true));
+        PrintWriter out = new PrintWriter(new FileWriter ("loginCredentials.txt", true));
         out.print(usernameInsert.getText() + "\n");
         out.print(passwordInsert.getText() + "\n");
         out.close();
@@ -124,7 +124,7 @@ public class LoginPanel extends JPanel implements ActionListener {
     
     public void actionPerformed(ActionEvent e) 
     {
-        fileReader("input.txt");
+        fileReader("loginCheck.txt");
         try {        
             fileWriter();
         } catch (IOException ex) {
